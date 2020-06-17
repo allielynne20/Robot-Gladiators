@@ -86,7 +86,7 @@ var startGame = function () {
 
   //reset player stats
   playerHealth = 100;
-  playerAttack = 10; 
+  playerAttack = 10;
   playerMoney = 10;
 
   for (var i = 0; i < enemyNames.length; i++) {
@@ -105,6 +105,11 @@ var startGame = function () {
 
       // pass the pickedEnemyName variable's value into the fight function, where it will assume the value of the enemyName parameter
       fight(pickedEnemyName);
+
+      //if player is still alive and we're not at the last enemy in the array
+      if (playerHealth > 0 && i < enemyNames.length - 1) {
+        shop ();
+      }
     } else {
       window.alert("You have lost your robot in battle! Game Over!");
       break;
@@ -113,31 +118,35 @@ var startGame = function () {
   //play again
   //startGame(); //when placed here calling a function inside its own function causes an infiite loop
   //after the loop ends, player is either out of health or enemies to fight, so run the endGame function
-  endGame();
+ //endGame();
 };
 //start the game when the page loads
-startGame ();
+startGame();
 
 
 //function to end the entire game 
 var endGame = function () {
-  //if a player is still alive, player wins!
-  if (playerHealth > 0) {
-    window.alert("Great job, you've survived the game! You now have a score of " + playerMoney + ".");
-  }
-  else {
-    window.alert("You've lost your robot in battle.");
-  }
-  //window.alert("The game has now ended. Let's see how you did!");
 
-  //ask the player if they'd like to play again
-  var playAgainConfirm = window.confirm ("Would you like to play again?");
+  var shop = function () {
+    console.log("entered the shop");
+    //if a player is still alive, player wins!
+    if (playerHealth > 0) {
+      window.alert("Great job, you've survived the game! You now have a score of " + playerMoney + ".");
+    }
+    else {
+      window.alert("You've lost your robot in battle.");
+    }
+    //window.alert("The game has now ended. Let's see how you did!");
 
-  if (playAgainConfirm) {
-    //restart the game
-    startGame();
-  }
-  else {
-    window.alert("Thank you for playing Robot Galdiators! Come back soon!");
-  }
+    //ask the player if they'd like to play again
+    var playAgainConfirm = window.confirm("Would you like to play again?");
+
+    if (playAgainConfirm) {
+      //restart the game
+      startGame();
+    }
+    else {
+      window.alert("Thank you for playing Robot Galdiators! Come back soon!");
+    }
+  };
 };
