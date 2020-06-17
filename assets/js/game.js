@@ -81,10 +81,12 @@ var fight = function (enemyNames) {
   }
 };
 
-if (playerHealth > 0) {
-  for (var i = 0; i < enemyNames.length; i++) {
+
+for (var i = 0; i < enemyNames.length; i++) {
+  if (playerHealth > 0) {
     // let user know what round they are in, remember that arrays start at 0 so it needs to have 1 added to it
     window.alert("Welcome to Robot Gladiators! Round " + (i + 1));
+    console.log("Welcome to Robot Gladiators! Round " + (i + 1));
     // pick new enemy to fight based on the index of the enemyNames array
     var pickedEnemyName = enemyNames[i];
 
@@ -96,9 +98,11 @@ if (playerHealth > 0) {
 
     // pass the pickedEnemyName variable's value into the fight function, where it will assume the value of the enemyName parameter
     fight(pickedEnemyName);
+  } else {
+    window.alert("You have lost your robot in battle! Game Over!");
+    break;
   }
 }
-else {
-  window.alert("You have lost your robot in battle! Game Over!");
-  break;
-}
+  //play again
+  //startGame(); //when placed here calling a function inside its own function causes an infiite loop
+
