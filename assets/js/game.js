@@ -107,20 +107,20 @@ var startGame = function () {
       fight(pickedEnemyName);
     } else {
       window.alert("You have lost your robot in battle! Game Over!");
-      break;
+      //break;
+      return endGame();
     }
   }
   //play again
   //startGame(); //when placed here calling a function inside its own function causes an infiite loop
   //after the loop ends, player is either out of health or enemies to fight, so run the endGame function
-  endGame();
+  //endGame();
 };
-//start the game when the page loads
-startGame ();
+
 
 
 //function to end the entire game 
-var endGame = function () {
+function endGame () {
   //if a player is still alive, player wins!
   if (playerHealth > 0) {
     window.alert("Great job, you've survived the game! You now have a score of " + playerMoney + ".");
@@ -141,3 +141,5 @@ var endGame = function () {
     window.alert("Thank you for playing Robot Galdiators! Come back soon!");
   }
 };
+//start the game when the page loads
+//startGame ();
